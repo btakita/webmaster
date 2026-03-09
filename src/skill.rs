@@ -16,6 +16,10 @@ pub fn install() -> Result<()> {
     config().install(None)
 }
 
+pub fn uninstall() -> Result<()> {
+    config().uninstall(None)
+}
+
 pub fn check() -> Result<()> {
     let up_to_date = config().check(None)?;
     if !up_to_date {

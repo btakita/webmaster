@@ -55,6 +55,8 @@ enum SkillCommands {
     Install,
     /// Check if the installed skill matches the binary version
     Check,
+    /// Uninstall the skill definition
+    Uninstall,
 }
 
 fn main() -> Result<()> {
@@ -76,6 +78,7 @@ fn main() -> Result<()> {
         Commands::Skill { command } => match command {
             SkillCommands::Install => skill::install()?,
             SkillCommands::Check => skill::check()?,
+            SkillCommands::Uninstall => skill::uninstall()?,
         },
     }
     Ok(())

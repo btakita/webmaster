@@ -35,6 +35,55 @@ fn test_cli_skill_install_help() {
 }
 
 #[test]
+fn test_cli_skill_uninstall_help() {
+    Command::cargo_bin("webmaster")
+        .unwrap()
+        .args(["skill", "uninstall", "--help"])
+        .assert()
+        .success()
+        .stdout(predicate::str::contains("Uninstall the skill definition"));
+}
+
+#[test]
+fn test_cli_skill_uninstall_not_installed() {
+    let dir = tempfile::tempdir().unwrap();
+    Command::cargo_bin("webmaster")
+        .unwrap()
+        .args(["skill", "uninstall"])
+        .current_dir(dir.path())
+        .assert()
+        .success()
+        .stderr(predicate::str::contains("not installed"));
+}
+
+#[test]
+fn test_cli_skill_uninstall_after_install() {
+    let dir = tempfile::tempdir().unwrap();
+
+    // Install first
+    Command::cargo_bin("webmaster")
+        .unwrap()
+        .args(["skill", "install"])
+        .current_dir(dir.path())
+        .assert()
+        .success();
+
+    let skill_path = dir.path().join(".claude/skills/webmaster/SKILL.md");
+    assert!(skill_path.exists());
+
+    // Uninstall
+    Command::cargo_bin("webmaster")
+        .unwrap()
+        .args(["skill", "uninstall"])
+        .current_dir(dir.path())
+        .assert()
+        .success()
+        .stderr(predicate::str::contains("Uninstalled skill"));
+
+    assert!(!skill_path.exists());
+}
+
+#[test]
 fn test_cli_skill_check_help() {
     Command::cargo_bin("webmaster")
         .unwrap()
