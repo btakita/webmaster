@@ -47,6 +47,9 @@ enum Commands {
         #[command(subcommand)]
         command: SkillCommands,
     },
+    /// Audit instruction files (AGENTS.md, SKILL.md, CLAUDE.md)
+    #[command(name = "audit-docs")]
+    AuditDocs,
 }
 
 #[derive(Subcommand)]
@@ -80,6 +83,9 @@ fn main() -> Result<()> {
             SkillCommands::Check => skill::check()?,
             SkillCommands::Uninstall => skill::uninstall()?,
         },
+        Commands::AuditDocs => {
+            agent_kit::audit::run(&agent_kit::audit::AuditConfig::agent_doc(), None)?;
+        }
     }
     Ok(())
 }

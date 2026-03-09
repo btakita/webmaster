@@ -1,6 +1,6 @@
 [package]
 name = "webmaster"
-version = "0.1.1"
+version = "0.1.2"
 edition = "2021"
 description = "Unified CLI for search engine webmaster tools — sitemap submission, search analytics, URL inspection across Google, Bing, and Yandex"
 license = "MIT OR Apache-2.0"
@@ -9,7 +9,7 @@ keywords = ["seo", "webmaster", "sitemap", "search-console", "bing"]
 categories = ["command-line-utilities", "web-programming"]
 
 [dependencies]
-agent-kit = { path = "../agent-kit", version = "0.1" }
+agent-kit = { path = "../agent-kit", version = "0.2", features = ["audit"] }
 anyhow = "1"
 clap = { version = "4", features = ["derive"] }
 serde = { version = "1", features = ["derive"] }

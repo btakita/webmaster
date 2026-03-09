@@ -10,9 +10,10 @@ checksum = "320119579fcad9c21884f5c4861d16174d0e06250625266f50fe6898340abefa"
 
 [[package]]
 name = "agent-kit"
-version = "0.1.0"
+version = "0.2.0"
 dependencies = [
  "anyhow",
+ "instruction-files",
 ]
 
 [[package]]
@@ -352,6 +353,12 @@ dependencies = [
 ]
 
 [[package]]
+name = "glob"
+version = "0.3.3"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "0cc23270f6e1808e30a928bdc84dea0b9b4136a8bc82338574f23baf47bbd280"
+
+[[package]]
 name = "hashbrown"
 version = "0.15.5"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -520,6 +527,18 @@ dependencies = [
  "hashbrown 0.16.1",
  "serde",
  "serde_core",
+]
+
+[[package]]
+name = "instruction-files"
+version = "0.1.4"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "2642ad653588b6f8e38219be516d8f556931ed08bda3a886a982e62b08f1336d"
+dependencies = [
+ "anyhow",
+ "glob",
+ "once_cell",
+ "regex",
 ]
 
 [[package]]
@@ -1263,7 +1282,7 @@ dependencies = [
 
 [[package]]
 name = "webmaster"
-version = "0.1.1"
+version = "0.1.2"
 dependencies = [
  "agent-kit",
  "anyhow",
