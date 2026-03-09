@@ -12,6 +12,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - name: Checkout agent-kit as sibling
+        run: git clone --depth 1 https://github.com/btakita/agent-kit.git ../agent-kit
       - uses: dtolnay/rust-toolchain@stable
       - uses: Swatinem/rust-cache@v2
       - run: cargo clippy -- -D warnings
@@ -26,6 +28,8 @@ jobs:
     needs: publish
     steps:
       - uses: actions/checkout@v4
+      - name: Checkout agent-kit as sibling
+        run: git clone --depth 1 https://github.com/btakita/agent-kit.git ../agent-kit
       - uses: dtolnay/rust-toolchain@stable
       - uses: Swatinem/rust-cache@v2
       - name: Build release binary
