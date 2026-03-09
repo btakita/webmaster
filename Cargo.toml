@@ -9,6 +9,7 @@ keywords = ["seo", "webmaster", "sitemap", "search-console", "bing"]
 categories = ["command-line-utilities", "web-programming"]
 
 [dependencies]
+agent-kit = { path = "../agent-kit", version = "0.1" }
 anyhow = "1"
 clap = { version = "4", features = ["derive"] }
 serde = { version = "1", features = ["derive"] }
@@ -20,3 +21,6 @@ open = "5"
 tiny_http = "0.12"
 
 [dev-dependencies]
+assert_cmd = "2"
+predicates = "3"
+tempfile = "3"

@@ -4,6 +4,7 @@ use clap::{Parser, Subcommand};
 mod auth;
 mod config;
 mod engines;
+mod skill;
 
 #[derive(Parser)]
 #[command(name = "webmaster", about = "Unified CLI for search engine webmaster tools")]
@@ -41,6 +42,19 @@ enum Commands {
         #[arg(short, long, default_value = "all")]
         engine: String,
     },
+    /// Manage the agent skill definition
+    Skill {
+        #[command(subcommand)]
+        command: SkillCommands,
+    },
+}
+
+#[derive(Subcommand)]
+enum SkillCommands {
+    /// Install the skill definition to .claude/skills/webmaster/SKILL.md
+    Install,
+    /// Check if the installed skill matches the binary version
+    Check,
 }
 
 fn main() -> Result<()> {
@@ -59,6 +73,10 @@ fn main() -> Result<()> {
         Commands::ListSitemaps { site, engine } => {
             engines::list_sitemaps(&engine, site.as_deref())?;
         }
+        Commands::Skill { command } => match command {
+            SkillCommands::Install => skill::install()?,
+            SkillCommands::Check => skill::check()?,
+        },
     }
     Ok(())
 }
