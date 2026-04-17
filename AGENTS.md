@@ -32,3 +32,13 @@ webmaster list-sitemaps                  # List from Google
 - Use `anyhow` for errors
 - Keep engine modules independent
 - Tokens stored with 0600 permissions
+
+
+## Library Context Policy
+
+This library follows the agent-loop library-context policy. Contributors
+authoring `AGENTS.md`, `SKILL.md`, or runbooks in this repo must read:
+
+[Library Context Policy](../instruction-files/LIBRARY_CONTEXT_POLICY.md)
+
+before making changes.
