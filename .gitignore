@@ -4,3 +4,4 @@ AGENTS.local.md
 *.iml
 *.swp
 *.swo
+.tsift/
