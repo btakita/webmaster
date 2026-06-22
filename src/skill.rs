@@ -3,13 +3,13 @@
 //! Delegates to `agent_kit::skill::SkillConfig` for the actual install/check logic.
 
 use anyhow::Result;
-use agent_kit::skill::SkillConfig;
+use agent_kit::{detect::Environment, skill::SkillConfig};
 
 const BUNDLED_SKILL: &str = include_str!("../SKILL.md");
 const VERSION: &str = env!("CARGO_PKG_VERSION");
 
 fn config() -> SkillConfig {
-    SkillConfig::new("webmaster", BUNDLED_SKILL, VERSION)
+    SkillConfig::with_environment("webmaster", BUNDLED_SKILL, VERSION, Environment::ClaudeCode)
 }
 
 pub fn install() -> Result<()> {
